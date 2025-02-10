@@ -53,8 +53,13 @@ class StudentServiceTest {
     }
 
     @Test
-    void getStudentByEmail() {
+    void testGetStudentByEmail() {
         Student student = new Student("jane@doe.com","Jane","password" );
+        System.out.println("_______________________________");
+        System.out.println(studentService.getAllStudents().size());
+        for (Student s : studentService.getAllStudents()) {
+            System.out.println(s.getEmail());
+        }
         studentService.createStudent(student);
 
         Student fetchedStudent = studentService.getStudentByEmail("jane@doe.com");
@@ -67,11 +72,11 @@ class StudentServiceTest {
     }
 
     @Test
-    void validateStudent() {
+    void testValidateStudent() {
         Student student = new Student("jack@doe.com","Jane","password" );
         studentService.createStudent(student);
-//        System.out.println("_______________________________");
-//        System.out.println(studentService.getAllStudents().size());
+        System.out.println("_______________________________");
+        System.out.println(studentService.getAllStudents().size());
         boolean status = studentService.validateStudent("jack@doe.com","password");
 
         assertTrue(status, "Validate student failed");

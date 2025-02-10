@@ -54,7 +54,8 @@ public class StudentService implements StudentI {
     @Override
     public boolean validateStudent(String email, String password) {
         try (Session session = sessionFactory.openSession()) {
-            Student student = getStudentByEmail(email);
+            Student student = session.get(Student.class, email);
+//            Student student = getStudentByEmail(email);
             if (student != null && student.getPassword().equals(password)) {
                 return true;
             }
@@ -66,7 +67,8 @@ public class StudentService implements StudentI {
     public void registerStudentToCourse(String email, int courseId) {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
-            Student student = getStudentByEmail(email);
+
+            Student student = session.get(Student.class, email);
             Course course = session.get(Course.class, courseId);
 
             if(student != null && course != null && !course.getStudents().contains(student)) {
