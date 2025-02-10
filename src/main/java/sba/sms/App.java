@@ -83,7 +83,7 @@ public class App {
 
     private static void printStudentCourses(String email) {
         System.out.printf("%s courses:%n-----------------------------%n", email);
-        System.out.printf("%-2s | %-20s | %s%n", "ID", "Course", "Instructor");
+        System.out.printf("%-2s | %-20s | %s%n", "ID", "CourseRepo", "Instructor");
         List<Course> userCourses = studentService.getStudentCourses(email);
         if (userCourses.isEmpty()) System.out.printf("No courses to view%n");
         for (Course course : userCourses) {
